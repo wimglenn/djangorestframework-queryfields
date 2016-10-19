@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 classifiers = [
@@ -18,7 +18,7 @@ setup(
     version='1.0.0',
     description='Serialize a partial subset of fields in the API',
     long_description=long_description,
-    packages=find_packages(exclude=['tests']),
+    packages=['drf_queryfields'],
     author='Wim Glenn',
     author_email='hey@wimglenn.com',
     license='MIT',
