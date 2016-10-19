@@ -1,0 +1,1 @@
+from drf_queryfields.mixins import QueryFieldsMixin
