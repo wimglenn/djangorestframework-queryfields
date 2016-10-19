@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 classifiers = [
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 3',
+    'License :: OSI Approved :: MIT License',
     'Topic :: Software Development :: Libraries',
     'Intended Audience :: Developers',
     'Framework :: Django',
@@ -20,6 +21,7 @@ setup(
     packages=find_packages(exclude=['tests']),
     author='Wim Glenn',
     author_email='hey@wimglenn.com',
+    license='MIT',
     url='https://github.com/wimglenn/djangorestframework-queryfields',
     classifiers=classifiers,
     extras_require={
