@@ -25,6 +25,6 @@ setup(
     url='https://github.com/wimglenn/djangorestframework-queryfields',
     classifiers=classifiers,
     extras_require={
-        'dev': ['setuptools', 'wheel', 'pytest-django', 'djangorestframework', 'django', 'mock_django']
+        'dev': ['setuptools', 'wheel', 'pytest-django', 'pytest', 'djangorestframework', 'django', 'mock_django']
     },
 )
