@@ -6,8 +6,10 @@ python:
   - "2.7"
   - "3.4"
   - "3.5"
+  - "3.5-dev"
   - "3.6-dev"
   - "nightly" # currently 3.7-dev
+  - "pypy"
 
 install: pip install --upgrade --editable .[dev]
 
