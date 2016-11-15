@@ -20,5 +20,6 @@ env:
 install: 
   - pip install -q $DJANGO_VERSION
   - pip install --editable .[dev]
+  - pip install --upgrade pytest
 
-script: py.test
+script: pytest
