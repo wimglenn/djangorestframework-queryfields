@@ -15,3 +15,4 @@ class SnippetSerializer(QueryFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = Snippet
+        fields = '__all__'
