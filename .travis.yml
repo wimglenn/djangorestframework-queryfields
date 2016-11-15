@@ -16,6 +16,6 @@ env:
   - DJANGO_VERSION=1.9.11
   - DJANGO_VERSION=1.8.16
 
-install: pip install --user --upgrade --editable .[dev]
+install: pip install --upgrade --editable .[dev]
 
 script: pytest
