@@ -1,4 +1,4 @@
-from tests.utils import assert_response
+from tests.utils import decode_content
 
 
 def test_list_response_unfiltered(client):
@@ -15,7 +15,8 @@ def test_list_response_unfiltered(client):
             'sketch': 'HOLY GRAIL',
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_detail_response_unfiltered(client):
@@ -25,7 +26,8 @@ def test_detail_response_unfiltered(client):
         'line': "Well, he's...he's, ah...probably pining for the fjords",
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_list_response_filtered_includes(client):
@@ -40,7 +42,8 @@ def test_list_response_filtered_includes(client):
             'line': "It's just a flesh wound",
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_detail_response_filtered_includes(client):
@@ -49,7 +52,8 @@ def test_detail_response_filtered_includes(client):
         'character': 'Shopkeeper',
         'line': "Well, he's...he's, ah...probably pining for the fjords",
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_list_response_filtered_excludes(client):
@@ -64,7 +68,8 @@ def test_list_response_filtered_excludes(client):
             'sketch': 'HOLY GRAIL',
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_detail_response_filtered_excludes(client):
@@ -73,7 +78,8 @@ def test_detail_response_filtered_excludes(client):
         'line': "Well, he's...he's, ah...probably pining for the fjords",
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_response_filtered_with_some_bogus_fields(client):
@@ -81,13 +87,15 @@ def test_response_filtered_with_some_bogus_fields(client):
     expected = {
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_response_filtered_with_only_bogus_fields(client):
     response = client.get('/quotes/parrot/?fields=blah')
     expected = {}
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_response_filtered_with_multiple_fields_in_separate_query_args(client):
@@ -96,7 +104,8 @@ def test_response_filtered_with_multiple_fields_in_separate_query_args(client):
         'character': 'Shopkeeper',
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_response_filtered_with_include_and_exclude(client):
@@ -105,7 +114,8 @@ def test_response_filtered_with_include_and_exclude(client):
         'character': 'Shopkeeper',
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_exclude_wins_for_ambiguous_filtering(client):
@@ -113,4 +123,5 @@ def test_exclude_wins_for_ambiguous_filtering(client):
     expected = {
         'sketch': 'PET SHOP',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected

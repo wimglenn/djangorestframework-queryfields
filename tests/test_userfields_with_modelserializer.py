@@ -1,4 +1,4 @@
-from tests.utils import assert_response
+from tests.utils import decode_content
 
 
 def test_model_list_response_unfiltered(client):
@@ -19,7 +19,8 @@ def test_model_list_response_unfiltered(client):
             'language': 'python',
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_detail_response_unfiltered(client):
@@ -31,7 +32,8 @@ def test_model_detail_response_unfiltered(client):
         'linenos': False,
         'language': 'bash',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_list_response_filtered_includes(client):
@@ -46,7 +48,8 @@ def test_model_list_response_filtered_includes(client):
             'language': 'python',
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_detail_response_filtered_includes(client):
@@ -55,7 +58,8 @@ def test_model_detail_response_filtered_includes(client):
         'title': 'Russian roulette',
         'language': 'bash',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_list_response_filtered_excludes(client):
@@ -72,7 +76,8 @@ def test_model_list_response_filtered_excludes(client):
             'linenos': False,
         },
     ]
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_detail_response_filtered_excludes(client):
@@ -81,7 +86,8 @@ def test_model_detail_response_filtered_excludes(client):
         'title': 'Russian roulette',
         'language': 'bash',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_response_filtered_with_some_bogus_fields(client):
@@ -89,13 +95,15 @@ def test_model_response_filtered_with_some_bogus_fields(client):
     expected = {
         'title': 'Russian roulette',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_response_filtered_with_only_bogus_fields(client):
     response = client.get('/snippets/3/?fields=blah')
     expected = {}
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_response_filtered_with_multiple_fields_in_separate_query_args(client):
@@ -105,7 +113,8 @@ def test_model_response_filtered_with_multiple_fields_in_separate_query_args(cli
         'linenos': False,
         'language': 'bash',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_response_filtered_with_include_and_exclude(client):
@@ -113,7 +122,8 @@ def test_model_response_filtered_with_include_and_exclude(client):
     expected = {
         'id': 3,
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
 
 
 def test_model_exclude_wins_for_ambiguous_filtering(client):
@@ -122,4 +132,5 @@ def test_model_exclude_wins_for_ambiguous_filtering(client):
         'title': 'Russian roulette',
         'code': '[ $[ $RANDOM % 6 ] == 0 ] && rm -rf / || echo "click"',
     }
-    assert_response(response, expected_content=expected)
+    content = decode_content(response)
+    assert content == expected
