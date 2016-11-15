@@ -21,4 +21,4 @@ install:
   - pip install -q $DJANGO_VERSION
   - pip install --editable .[dev]
 
-script: pytest
+script: py.test
