@@ -12,10 +12,13 @@ python:
   - "pypy"
 
 env:
-  - DJANGO_VERSION=1.10.3
-  - DJANGO_VERSION=1.9.11
-  - DJANGO_VERSION=1.8.16
+  - Django>=1.10,<1.11
+  - Django>=1.9,<1.10
+  - Django>=1.8,<1.9
+  - Django>=1.7,<1.8
 
-install: pip install --upgrade --editable .[dev]
+install: 
+  - pip install -q "$DJANGO_VERSION"
+  - pip install --editable .[dev]
 
 script: pytest
