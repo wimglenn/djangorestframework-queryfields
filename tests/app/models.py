@@ -18,3 +18,10 @@ class Snippet(models.Model):
 
     class Meta:
         app_label = 'test_app'
+
+
+class Explosive(object):
+
+    def __init__(self, safe, boom):
+        self.safe = safe
+        self.boom = boom

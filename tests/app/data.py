@@ -2,7 +2,7 @@
 from mock_django.query import QuerySetMock
 from django.http import Http404
 
-from tests.app.models import Quote, Snippet
+from tests.app.models import Quote, Snippet, Explosive
 
 
 def get_quote_list():
@@ -33,3 +33,15 @@ def get_snippet_model_instance(pk=None):
     code = '[ $[ $RANDOM % 6 ] == 0 ] && rm -rf / || echo "click"'
     snippet = Snippet(id=3, title='Russian roulette', code=code, language='bash')
     return snippet
+
+
+def get_explosive_list():
+    bomb1 = Explosive(safe='green wire', boom='red wire')
+    bomb2 = Explosive(safe='helium', boom='hydrogen')
+    return [bomb1, bomb2]
+
+
+def get_explosive_object(pk=None):
+    if pk != 'bunger':
+        raise Http404
+    return Explosive(safe='tom thumb', boom='poha')

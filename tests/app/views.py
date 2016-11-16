@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from tests.app.data import get_quote_list, get_quote_object, get_snippet_queryset, get_snippet_model_instance
-from tests.app.serializers import QuoteSerializer, SnippetSerializer
+from tests.app.data import get_quote_list, get_quote_object, get_snippet_queryset, get_snippet_model_instance, get_explosive_list, get_explosive_object
+from tests.app.serializers import QuoteSerializer, SnippetSerializer, ExplosiveSerializer
 
 
 class QuoteViewSet(viewsets.ViewSet):
@@ -30,3 +30,18 @@ class SnippetViewSet(viewsets.ModelViewSet):
     def get_object(self):
         pk = self.request.parser_context['kwargs']['pk']
         return get_snippet_model_instance(pk=pk)
+
+
+class ExplosiveViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        explosives = get_explosive_list()
+        serializer = ExplosiveSerializer(explosives, many=True, context={'request': request})
+        response = Response(serializer.data)
+        return response
+
+    def retrieve(self, request, pk=None):
+        explosive = get_explosive_object(pk=pk)
+        serializer = ExplosiveSerializer(explosive, context={'request': request})
+        response = Response(serializer.data)
+        return response
