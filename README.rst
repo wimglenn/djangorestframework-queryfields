@@ -4,10 +4,10 @@ Django REST framework QueryFields
 Introduction
 ------------
 
-This library allows API users to specify a subset of fields they are interested in, using query parameters of the request.
+This library allows API users to specify which fields they're interested in, using query parameters of the request.
 
 - Fewer bytes down the wire = snappier ajax for your webapps
-- Reduces backend load when expensive fields are unneeded
+- Decrease backend load when expensive fields go unneeded
 
 
 Installation
@@ -97,16 +97,20 @@ Usage
 FAQ
 ---
 
-Q: Can I use this with vanilla serializers as well as ``ModelSerializer``?
-A: Sure.  You'll need include the request in the context, because that's how we access the querystring
+Q:
+  Can I use this with vanilla serializers as well as ``ModelSerializer``?
+A:
+  Sure.  You'll need include the request in the context, to provide access on the querystring:
 
 .. code-block:: python
 
     MySerializer(obj, context={'request': request})
 
 
-Q: The name ``fields`` conflicts with some other functionality in my API (e.g. `django-filter <https://django-filter.readthedocs.io/en/latest/rest_framework.html>`_).  Can I change it to something else?
-A: Yep.  Override a couple of attributes on the class, and then Python's `MRO <https://docs.python.org/3/glossary.html#term-method-resolution-order>`_ will take care of the rest.  For example:
+Q:
+  The name ``fields`` conflicts with some other functionality in my API (e.g. `django-filter <https://django-filter.readthedocs.io/en/latest/rest_framework.html>`_).  Can I change it to something else?
+A:
+  Yep.  Override a couple of attributes on the class, and then Python's `MRO <https://docs.python.org/3/glossary.html#term-method-resolution-order>`_ will take care of the rest.  For example:
 
 .. code-block:: python
 
@@ -117,7 +121,9 @@ A: Yep.  Override a couple of attributes on the class, and then Python's `MRO <h
         delimiter = '|'
 
 
-Now a request would look like ``GET /things/?exclude=key2|key3`` instead of the default ``GET /things/?fields!=key2,key3``.
+Now request like ``GET /things/?exclude=key2|key3`` instead of the default ``GET /things/?fields!=key2,key3``.
 
-Q: Hey this thing broke, you suck... / Hey, wouldn't it be cool if...
-A: Well, that's not really a question buddy.  For feature requests or bug reports, please `create an issue here <https://github.com/wimglenn/djangorestframework-queryfields/issues>`_.
+Q:
+  This thing broke, you suck... / Hey, wouldn't it be cool if...
+A:
+  Well, that's not really a question, pal.  For feature requests or bug reports, please `create an issue here <https://github.com/wimglenn/djangorestframework-queryfields/issues>`_.
