@@ -16,7 +16,7 @@ class SnippetSerializer(QueryFieldsMixin, serializers.ModelSerializer):
 
     class Meta:
         model = Snippet
-        fields = '__all__'
+        exclude = ()
 
 
 class ExplosiveSerializer(QueryFieldsMixin, serializers.Serializer):
