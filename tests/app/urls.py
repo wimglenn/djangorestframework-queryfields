@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
 
-from tests.app.views import QuoteViewSet, SnippetViewSet, ExplosiveViewSet
-
+from tests.app.views import ExplosiveViewSet
+from tests.app.views import QuoteViewSet
+from tests.app.views import SnippetViewSet
 
 router = DefaultRouter()
 router.register(r'quotes', QuoteViewSet, base_name='api-quote')

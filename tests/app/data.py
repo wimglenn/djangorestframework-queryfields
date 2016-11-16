@@ -1,8 +1,10 @@
 # coding: utf-8
-from mock_django.query import QuerySetMock
 from django.http import Http404
+from mock_django.query import QuerySetMock
 
-from tests.app.models import Quote, Snippet, Explosive
+from tests.app.models import Explosive
+from tests.app.models import Quote
+from tests.app.models import Snippet
 
 
 def get_quote_list():

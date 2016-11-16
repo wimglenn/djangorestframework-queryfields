@@ -1,8 +1,15 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from tests.app.data import get_quote_list, get_quote_object, get_snippet_queryset, get_snippet_model_instance, get_explosive_list, get_explosive_object
-from tests.app.serializers import QuoteSerializer, SnippetSerializer, ExplosiveSerializer
+from tests.app.data import get_explosive_list
+from tests.app.data import get_explosive_object
+from tests.app.data import get_quote_list
+from tests.app.data import get_quote_object
+from tests.app.data import get_snippet_model_instance
+from tests.app.data import get_snippet_queryset
+from tests.app.serializers import ExplosiveSerializer
+from tests.app.serializers import QuoteSerializer
+from tests.app.serializers import SnippetSerializer
 
 
 class QuoteViewSet(viewsets.ViewSet):
