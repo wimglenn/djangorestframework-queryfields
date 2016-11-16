@@ -1,8 +1,10 @@
+from django.test import Client
+
 from tests.utils import decode_content
 
 
-def test_model_list_response_unfiltered(client):
-    response = client.get('/snippets/')
+def test_model_list_response_unfiltered():
+    response = Client().get('/snippets/')
     expected = [
         {
             'id': 1,
@@ -23,8 +25,8 @@ def test_model_list_response_unfiltered(client):
     assert content == expected
 
 
-def test_model_detail_response_unfiltered(client):
-    response = client.get('/snippets/3/')
+def test_model_detail_response_unfiltered():
+    response = Client().get('/snippets/3/')
     expected = {
         'id': 3,
         'title': 'Russian roulette',
@@ -36,8 +38,8 @@ def test_model_detail_response_unfiltered(client):
     assert content == expected
 
 
-def test_model_list_response_filtered_includes(client):
-    response = client.get('/snippets/?fields=title,language')
+def test_model_list_response_filtered_includes():
+    response = Client().get('/snippets/?fields=title,language')
     expected = [
         {
             'title': 'Fork bomb',
@@ -52,8 +54,8 @@ def test_model_list_response_filtered_includes(client):
     assert content == expected
 
 
-def test_model_detail_response_filtered_includes(client):
-    response = client.get('/snippets/3/?fields=title,language')
+def test_model_detail_response_filtered_includes():
+    response = Client().get('/snippets/3/?fields=title,language')
     expected = {
         'title': 'Russian roulette',
         'language': 'bash',
@@ -62,8 +64,8 @@ def test_model_detail_response_filtered_includes(client):
     assert content == expected
 
 
-def test_model_list_response_filtered_excludes(client):
-    response = client.get('/snippets/?fields!=code,language')
+def test_model_list_response_filtered_excludes():
+    response = Client().get('/snippets/?fields!=code,language')
     expected = [
         {
             'id': 1,
@@ -80,8 +82,8 @@ def test_model_list_response_filtered_excludes(client):
     assert content == expected
 
 
-def test_model_detail_response_filtered_excludes(client):
-    response = client.get('/snippets/3/?fields!=id,linenos,code')
+def test_model_detail_response_filtered_excludes():
+    response = Client().get('/snippets/3/?fields!=id,linenos,code')
     expected = {
         'title': 'Russian roulette',
         'language': 'bash',
@@ -90,8 +92,8 @@ def test_model_detail_response_filtered_excludes(client):
     assert content == expected
 
 
-def test_model_response_filtered_with_some_bogus_fields(client):
-    response = client.get('/snippets/3/?fields=title,spam,eggs')
+def test_model_response_filtered_with_some_bogus_fields():
+    response = Client().get('/snippets/3/?fields=title,spam,eggs')
     expected = {
         'title': 'Russian roulette',
     }
@@ -99,15 +101,15 @@ def test_model_response_filtered_with_some_bogus_fields(client):
     assert content == expected
 
 
-def test_model_response_filtered_with_only_bogus_fields(client):
-    response = client.get('/snippets/3/?fields=blah')
+def test_model_response_filtered_with_only_bogus_fields():
+    response = Client().get('/snippets/3/?fields=blah')
     expected = {}
     content = decode_content(response)
     assert content == expected
 
 
-def test_model_response_filtered_with_multiple_fields_in_separate_query_args(client):
-    response = client.get('/snippets/3/?fields=title&fields=linenos,language')
+def test_model_response_filtered_with_multiple_fields_in_separate_query_args():
+    response = Client().get('/snippets/3/?fields=title&fields=linenos,language')
     expected = {
         'title': 'Russian roulette',
         'linenos': False,
@@ -117,8 +119,8 @@ def test_model_response_filtered_with_multiple_fields_in_separate_query_args(cli
     assert content == expected
 
 
-def test_model_response_filtered_with_include_and_exclude(client):
-    response = client.get('/snippets/3/?fields=id&fields!=language')
+def test_model_response_filtered_with_include_and_exclude():
+    response = Client().get('/snippets/3/?fields=id&fields!=language')
     expected = {
         'id': 3,
     }
@@ -126,8 +128,8 @@ def test_model_response_filtered_with_include_and_exclude(client):
     assert content == expected
 
 
-def test_model_exclude_wins_for_ambiguous_filtering(client):
-    response = client.get('/snippets/3/?fields=id,title,code&fields!=id')
+def test_model_exclude_wins_for_ambiguous_filtering():
+    response = Client().get('/snippets/3/?fields=id,title,code&fields!=id')
     expected = {
         'title': 'Russian roulette',
         'code': '[ $[ $RANDOM % 6 ] == 0 ] && rm -rf / || echo "click"',

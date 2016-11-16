@@ -1,8 +1,10 @@
+from django.test import Client
+
 from tests.utils import decode_content
 
 
-def test_list_response_unfiltered(client):
-    response = client.get('/quotes/')
+def test_list_response_unfiltered():
+    response = Client().get('/quotes/')
     expected = [
         {
             'character': 'Customer',
@@ -19,8 +21,8 @@ def test_list_response_unfiltered(client):
     assert content == expected
 
 
-def test_detail_response_unfiltered(client):
-    response = client.get('/quotes/parrot/')
+def test_detail_response_unfiltered():
+    response = Client().get('/quotes/parrot/')
     expected = {
         'character': 'Shopkeeper',
         'line': "Well, he's...he's, ah...probably pining for the fjords",
@@ -30,8 +32,8 @@ def test_detail_response_unfiltered(client):
     assert content == expected
 
 
-def test_list_response_filtered_includes(client):
-    response = client.get('/quotes/?fields=character,line')
+def test_list_response_filtered_includes():
+    response = Client().get('/quotes/?fields=character,line')
     expected = [
         {
             'character': 'Customer',
@@ -46,8 +48,8 @@ def test_list_response_filtered_includes(client):
     assert content == expected
 
 
-def test_detail_response_filtered_includes(client):
-    response = client.get('/quotes/parrot/?fields=character,line')
+def test_detail_response_filtered_includes():
+    response = Client().get('/quotes/parrot/?fields=character,line')
     expected = {
         'character': 'Shopkeeper',
         'line': "Well, he's...he's, ah...probably pining for the fjords",
@@ -56,8 +58,8 @@ def test_detail_response_filtered_includes(client):
     assert content == expected
 
 
-def test_list_response_filtered_excludes(client):
-    response = client.get('/quotes/?fields!=character')
+def test_list_response_filtered_excludes():
+    response = Client().get('/quotes/?fields!=character')
     expected = [
         {
             'line': "It's certainly uncontaminated by cheese",
@@ -72,8 +74,8 @@ def test_list_response_filtered_excludes(client):
     assert content == expected
 
 
-def test_detail_response_filtered_excludes(client):
-    response = client.get('/quotes/parrot/?fields!=character')
+def test_detail_response_filtered_excludes():
+    response = Client().get('/quotes/parrot/?fields!=character')
     expected = {
         'line': "Well, he's...he's, ah...probably pining for the fjords",
         'sketch': 'PET SHOP',
@@ -82,8 +84,8 @@ def test_detail_response_filtered_excludes(client):
     assert content == expected
 
 
-def test_response_filtered_with_some_bogus_fields(client):
-    response = client.get('/quotes/parrot/?fields=sketch,spam,eggs')
+def test_response_filtered_with_some_bogus_fields():
+    response = Client().get('/quotes/parrot/?fields=sketch,spam,eggs')
     expected = {
         'sketch': 'PET SHOP',
     }
@@ -91,15 +93,15 @@ def test_response_filtered_with_some_bogus_fields(client):
     assert content == expected
 
 
-def test_response_filtered_with_only_bogus_fields(client):
-    response = client.get('/quotes/parrot/?fields=blah')
+def test_response_filtered_with_only_bogus_fields():
+    response = Client().get('/quotes/parrot/?fields=blah')
     expected = {}
     content = decode_content(response)
     assert content == expected
 
 
-def test_response_filtered_with_multiple_fields_in_separate_query_args(client):
-    response = client.get('/quotes/parrot/?fields=character&fields=sketch')
+def test_response_filtered_with_multiple_fields_in_separate_query_args():
+    response = Client().get('/quotes/parrot/?fields=character&fields=sketch')
     expected = {
         'character': 'Shopkeeper',
         'sketch': 'PET SHOP',
@@ -108,8 +110,8 @@ def test_response_filtered_with_multiple_fields_in_separate_query_args(client):
     assert content == expected
 
 
-def test_response_filtered_with_include_and_exclude(client):
-    response = client.get('/quotes/parrot/?fields=character&fields=sketch&fields!=line')
+def test_response_filtered_with_include_and_exclude():
+    response = Client().get('/quotes/parrot/?fields=character&fields=sketch&fields!=line')
     expected = {
         'character': 'Shopkeeper',
         'sketch': 'PET SHOP',
@@ -118,8 +120,8 @@ def test_response_filtered_with_include_and_exclude(client):
     assert content == expected
 
 
-def test_exclude_wins_for_ambiguous_filtering(client):
-    response = client.get('/quotes/parrot/?fields=line,sketch&fields!=line')
+def test_exclude_wins_for_ambiguous_filtering():
+    response = Client().get('/quotes/parrot/?fields=line,sketch&fields!=line')
     expected = {
         'sketch': 'PET SHOP',
     }
