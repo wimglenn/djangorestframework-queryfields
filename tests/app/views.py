@@ -26,6 +26,15 @@ class QuoteViewSet(viewsets.ViewSet):
         response = Response(serializer.data)
         return response
 
+    def create(self, request):
+        serializer = QuoteSerializer(data={}, context={'request': request})
+        response_data = {
+            'request_query': request.GET,
+            'request_method': request.method,
+            'serializer_instance_fields': list(serializer.get_fields()),
+        }
+        return Response(response_data)
+
 
 class SnippetViewSet(viewsets.ModelViewSet):
 
