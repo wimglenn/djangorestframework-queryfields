@@ -22,4 +22,7 @@ install:
 
 script: 
   - pip freeze
-  - pytest
+  - pytest --cov=drf_queryfields
+
+after_success:
+  - coveralls
