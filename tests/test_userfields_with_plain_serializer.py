@@ -1,5 +1,6 @@
 from rest_framework.test import APIClient
 
+from tests.app.serializers import QuoteSerializer
 from tests.utils import decode_content
 
 
@@ -130,6 +131,7 @@ def test_exclude_wins_for_ambiguous_filtering():
 
 
 def test_post_ignores_queryfields():
+    # Ensures that fields aren't dropped for other types of request
     response = APIClient().post('/quotes/?fields=line,sketch')
     expected = {
         'request_method': 'POST',
@@ -138,3 +140,15 @@ def test_post_ignores_queryfields():
     }
     content = decode_content(response)
     assert content == expected
+
+
+def test_instantiate_without_request_context():
+    # just test that it doesn't crash or b0rk the serializer to omit request context
+    data = {
+        'character': 'the character',
+        'line': 'the line',
+        'sketch': 'the sketch',
+    }
+    serializer = QuoteSerializer(data=data)
+    assert serializer.is_valid()
+    assert sorted(serializer.get_fields()) == ['character', 'line', 'sketch']
