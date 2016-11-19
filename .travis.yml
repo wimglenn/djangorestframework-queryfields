@@ -21,7 +21,7 @@ matrix:
 
 install: 
   - pip install -q Django~=$DJANGO_VERSION
-  - if [[ DJANGO_VERSION == '1.7'* ]]; then pip install djangorestframework~=2.4.8; fi
+  - if [[ $DJANGO_VERSION == '1.7'* ]]; then pip install djangorestframework~=2.4.8; fi
   - pip install --editable .[dev]
   - pip install --upgrade pytest
 
