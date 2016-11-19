@@ -9,14 +9,19 @@ python:
   - "pypy"
 
 env:
-  - DJANGO_VERSION="Django>=1.10,<1.11"
-  - DJANGO_VERSION="Django>=1.9,<1.10"
-  - DJANGO_VERSION="Django>=1.8,<1.9"
+  - DJANGO_VERSION="1.10.3"
+  - DJANGO_VERSION="1.9.11"
+  - DJANGO_VERSION="1.8.16"
 
-fast_finish: true
+matrix:
+  fast_finish: true
+  include:
+  - python: "2.7"
+    env: DJANGO_VERSION="1.7.11"
 
 install: 
-  - pip install -q $DJANGO_VERSION
+  - pip install -q Django~=$DJANGO_VERSION
+  - if [[ $DJANGO_VERSION == '1.7'* ]]; then pip install djangorestframework~=2.4.8; fi
   - pip install --editable .[dev]
   - pip install --upgrade pytest
 
@@ -25,6 +30,7 @@ script:
   - pytest --cov=drf_queryfields
 
 after_success:
+  - coverage combine
   - coveralls
 
 notifications:
