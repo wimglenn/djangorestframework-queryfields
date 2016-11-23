@@ -15,130 +15,15 @@ Django REST framework QueryFields
 .. |womm| image:: https://cdn.rawgit.com/nikku/works-on-my-machine/v0.2.0/badge.svg
 .. _womm: https://github.com/nikku/works-on-my-machine
 
+Allows clients to control which fields will be sent in the API response.  Fields are specified in the query, e.g.
 
-Introduction
-------------
+.. code-block:: 
 
-This library allows API users to specify which fields they're interested in, using query parameters of the request.
+    # You want a list of users but you're just interested in the fields "id" and "username":
+    GET /users/?fields=id,username
 
-- Fewer bytes down the wire = snappier ajax for your webapps
-- Decrease backend load when expensive fields go unneeded
-
-
-Installation
-------------
-
-.. code-block:: bash
-
-    pip install djangorestframework-queryfields
+    # You want to see every field except "id" for the specific user tom:
+    GET /users/tom/?fields!=id
 
 
-Quickstart
-----------
-
-Specify your base model serializer like this:
-
-.. code-block:: python
-
-    from rest_framework.serializers import ModelSerializer
-    from drf_queryfields import QueryFieldsMixin
-
-    class MyModelSerializer(QueryFieldsMixin, ModelSerializer):
-        pass
-
-
-Yeah, that's pretty much it.
-
-
-Usage
------
-
-.. code-block:: bash
-
-    GET http://127.0.0.1:8000/things/
-
-    HTTP/1.1 200 OK
-    ...
-    [
-      {
-        "id": 1,
-        "key1": "val1",
-        "key2": "val2",
-        "key3": "val3",
-      },
-      {
-        "id": 2,
-        "key1": "valA",
-        "key2": "valB",
-        "key3": "valC",
-      }
-    ]
-
-
-    GET http://127.0.0.1:8000/things/?fields=id,key2
-
-    HTTP/1.1 200 OK
-    ...
-    [
-      {
-        "id": 1,
-        "key2": "val2",
-      },
-      {
-        "id": 2,
-        "key2": "valB",
-      }
-    ]
-
-
-    GET http://127.0.0.1:8000/things/?fields!=key2
-
-    HTTP/1.1 200 OK
-    ...
-    [
-      {
-        "id": 1,
-        "key1": "val1",
-        "key3": "val3",
-      },
-      {
-        "id": 2,
-        "key1": "valA",
-        "key3": "valC",
-      }
-    ]
-
-
-FAQ
----
-
-Q:
-  Can I use this with vanilla serializers as well as ``ModelSerializer``?
-A:
-  Sure.  You'll need include the request in the context, to provide access on the querystring:
-
-.. code-block:: python
-
-    MySerializer(obj, context={'request': request})
-
-
-Q:
-  The name ``fields`` conflicts with some other functionality in my API (e.g. `django-filter <https://django-filter.readthedocs.io/en/latest/rest_framework.html>`_).  Can I change it to something else?
-A:
-  Yep.  Override a couple of attributes on the class, and then Python's `MRO <https://docs.python.org/3/glossary.html#term-method-resolution-order>`_ will take care of the rest.  For example:
-
-.. code-block:: python
-
-    class MyModelSerializer(QueryFieldsMixin, ModelSerializer):
-
-        include_arg_name = 'include'
-        exclude_arg_name = 'exclude'
-        delimiter = '|'
-
-
-Now request like ``GET /things/?exclude=key2|key3`` instead of the default ``GET /things/?fields!=key2,key3``.
-
-Q:
-  This thing broke, you suck... / Hey, wouldn't it be cool if...
-A:
-  Well, that's not really a question, pal.  For feature requests or bug reports, please `create an issue here <https://github.com/wimglenn/djangorestframework-queryfields/issues>`_.
+Documentation is hosted on `Read The Docs <http://djangorestframework-queryfields.readthedocs.io/>`_.
