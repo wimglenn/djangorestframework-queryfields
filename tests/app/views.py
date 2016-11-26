@@ -31,7 +31,7 @@ class QuoteViewSet(viewsets.ViewSet):
         response_data = {
             'request_query': request.GET,
             'request_method': request.method,
-            'serializer_instance_fields': list(serializer.get_fields()),
+            'serializer_instance_fields': list(serializer.fields),
         }
         return Response(response_data)
 
