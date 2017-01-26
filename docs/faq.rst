@@ -12,7 +12,7 @@ A:
 
 
 Q:
-  The name ``fields`` conflicts with some other functionality in my API (e.g. `django-filter <https://django-filter.readthedocs.io/en/latest/rest_framework.html>`_).  Can I change it to something else?
+  The name ``fields`` conflicts with some other functionality in my API (e.g. `django-filter <https://django-filter.readthedocs.io/en/latest/guide/rest_framework.html>`_).  Can I change it to something else?
 A:
   Yep.  Override a couple of attributes on the class, and then Python's `MRO <https://docs.python.org/3/glossary.html#term-method-resolution-order>`_ will take care of the rest.  For example:
 
