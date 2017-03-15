@@ -4,14 +4,14 @@ sudo: false
 
 python:
   - "2.7"
-  - "3.5"
+  - "3.6"
   - "nightly" # currently 3.7-dev
   - "pypy"
 
 env:
-  - DJANGO_VERSION="1.10.3"
+  - DJANGO_VERSION="1.10.6"
   - DJANGO_VERSION="1.9.11"
-  - DJANGO_VERSION="1.8.16"
+  - DJANGO_VERSION="1.8.17"
 
 matrix:
   fast_finish: true
