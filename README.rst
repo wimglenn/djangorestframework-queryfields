@@ -6,7 +6,7 @@ Django REST framework QueryFields
 .. |travis| image:: https://travis-ci.org/wimglenn/djangorestframework-queryfields.svg?branch=master
 .. _travis: https://travis-ci.org/wimglenn/djangorestframework-queryfields
 
-.. |coveralls| image:: https://img.shields.io/coveralls/wimglenn/djangorestframework-queryfields.svg
+.. |coveralls| image:: https://coveralls.io/repos/github/wimglenn/djangorestframework-queryfields/badge.svg?branch=master
 .. _coveralls: https://coveralls.io/github/wimglenn/djangorestframework-queryfields?branch=master
 
 .. |pypi| image:: https://img.shields.io/pypi/v/djangorestframework-queryfields.svg
