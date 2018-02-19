@@ -20,7 +20,9 @@ Allows clients to control which fields will be sent in the API response.  Fields
 .. code-block:: 
 
     # You want a list of users but you're only interested in the fields "id" and "username":
-    *GET /users/?fields=id,username*
+    
+    GET /users/?fields=id,username
+    
     [
       {
         "id": 1,
@@ -32,8 +34,11 @@ Allows clients to control which fields will be sent in the API response.  Fields
       }
     ]
 
+    
     # You want to see every field except "id" for the specific user wim:
-    *GET /users/2/?fields!=id*
+    
+    GET /users/2/?fields!=id
+    
     {
       "username": "wim",
       "email": "hey@wimglenn.com",
