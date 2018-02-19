@@ -19,11 +19,27 @@ Allows clients to control which fields will be sent in the API response.  Fields
 
 .. code-block:: 
 
-    # You want a list of users but you're just interested in the fields "id" and "username":
-    GET /users/?fields=id,username
+    # You want a list of users but you're only interested in the fields "id" and "username":
+    *GET /users/?fields=id,username*
+    [
+      {
+        "id": 1,
+        "username": "tom"
+      },
+      {
+        "id": 2,
+        "username": "wim"
+      }
+    ]
 
-    # You want to see every field except "id" for the specific user tom:
-    GET /users/tom/?fields!=id
+    # You want to see every field except "id" for the specific user wim:
+    *GET /users/2/?fields!=id*
+    {
+      "username": "wim",
+      "email": "hey@wimglenn.com",
+      "spirit_animal": "raccoon"
+    }
 
+**Supported Django versions**: 1.8+, 2.0 (Python 3 only), 1.7 (DRF 2 only).  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/master/.travis.yml/>`_ for details.
 
 Documentation is hosted on `Read The Docs <http://djangorestframework-queryfields.readthedocs.io/>`_.
