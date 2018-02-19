@@ -9,22 +9,17 @@ python:
   - "pypy"
 
 env:
-  - DJANGO_VERSION="2.0.2"
   - DJANGO_VERSION="1.11.10"
   - DJANGO_VERSION="1.10.8"
-  - DJANGO_VERSION="1.9.13"
-  - DJANGO_VERSION="1.8.18"
 
 matrix:
   fast_finish: true
   include:
   - python: "2.7"
     env: DJANGO_VERSION="1.7.11"
-  exclude:
-  - python: "2.7"
+  - python: "3.6"
     env: DJANGO_VERSION="2.0.2"
-  exclude:
-  - python: "pypy"
+  - python: "nightly"
     env: DJANGO_VERSION="2.0.2"
 
 install: 
