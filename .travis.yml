@@ -9,16 +9,20 @@ python:
   - "pypy"
 
 env:
-  - DJANGO_VERSION="1.11.0"
-  - DJANGO_VERSION="1.10.6"
-  - DJANGO_VERSION="1.9.11"
-  - DJANGO_VERSION="1.8.17"
+  - DJANGO_VERSION="1.11.10"
+  - DJANGO_VERSION="1.10.8"
 
 matrix:
   fast_finish: true
+  allow_failures:
+  - python: "nightly"
   include:
   - python: "2.7"
     env: DJANGO_VERSION="1.7.11"
+  - python: "3.6"
+    env: DJANGO_VERSION="2.0.2"
+  - python: "nightly"
+    env: DJANGO_VERSION="2.0.2"
 
 install: 
   - pip install -q Django~=$DJANGO_VERSION
