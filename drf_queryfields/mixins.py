@@ -1,4 +1,7 @@
-class QueryFieldsMixin(object):
+from rest_framework.serializers import ModelSerializer
+import six
+
+class QueryFieldsMixin(ModelSerializer):
 
     # If using Django filters in the API, these labels mustn't conflict with any model field names.
     include_arg_name = 'fields'
@@ -12,7 +15,11 @@ class QueryFieldsMixin(object):
         super(QueryFieldsMixin, self).__init__(*args, **kwargs)
 
         try:
-            request = self.context['request']
+            if not self.context:
+                return
+            request = self.context.get('request')
+            if not request:
+                return
             method = request.method
         except (AttributeError, TypeError, KeyError):
             # The serializer was not initialized with request context.
@@ -35,6 +42,7 @@ class QueryFieldsMixin(object):
 
         if not include_field_names and not exclude_field_names:
             # No user fields filtering was requested, we have nothing to do here.
+            self._reset_context_for_sub_fields(self.fields)
             return
 
         serializer_field_names = set(self.fields)
@@ -45,3 +53,13 @@ class QueryFieldsMixin(object):
 
         for field in fields_to_drop:
             self.fields.pop(field)
+
+        self._reset_context_for_sub_fields(self.fields)
+
+    def _reset_context_for_sub_fields(self, fields):
+        for field in six.itervalues(fields.fields):
+            if not field.context:
+                # print 'resetting context for {}'.format(type(field))
+                delattr(field, 'context')
+                setattr(field, '_context', self.context)
+                self._reset_context_for_sub_fields(field)
