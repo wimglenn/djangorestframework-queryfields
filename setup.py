@@ -24,6 +24,9 @@ setup(
     license='MIT',
     url='https://github.com/wimglenn/djangorestframework-queryfields',
     classifiers=classifiers,
+    install_requires=[
+        'six',
+    ],
     extras_require={
         'dev': [
             'pytest', 'pytest-cov', 'pytest-django', 'coveralls',

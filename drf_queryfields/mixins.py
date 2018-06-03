@@ -1,7 +1,6 @@
-from rest_framework.serializers import ModelSerializer
 import six
 
-class QueryFieldsMixin(ModelSerializer):
+class QueryFieldsMixin(object):
 
     # If using Django filters in the API, these labels mustn't conflict with any model field names.
     include_arg_name = 'fields'
@@ -21,13 +20,11 @@ class QueryFieldsMixin(ModelSerializer):
             if not request:
                 return
             method = request.method
+            if method != 'GET':
+                return
         except (AttributeError, TypeError, KeyError):
             # The serializer was not initialized with request context.
             return
-
-        if method != 'GET':
-            return
-
         try:
             query_params = request.query_params
         except AttributeError:
