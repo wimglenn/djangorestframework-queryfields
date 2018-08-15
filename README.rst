@@ -10,7 +10,7 @@ Django REST framework QueryFields
 .. _coveralls: https://coveralls.io/github/wimglenn/djangorestframework-queryfields?branch=master
 
 .. |pypi| image:: https://img.shields.io/pypi/v/djangorestframework-queryfields.svg
-.. _pypi: https://pypi.python.org/pypi/djangorestframework-queryfields
+.. _pypi: https://pypi.org/project/djangorestframework-queryfields
 
 .. |womm| image:: https://cdn.rawgit.com/nikku/works-on-my-machine/v0.2.0/badge.svg
 .. _womm: https://github.com/nikku/works-on-my-machine
