@@ -45,6 +45,6 @@ Allows clients to control which fields will be sent in the API response.  Fields
       "spirit_animal": "raccoon"
     }
 
-**Supported Django versions**: 1.8+, 2.0 (Python 3 only), 1.7 (DRF 2 only).  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/master/.travis.yml/>`_ for details.
+**Supported Django versions**: 1.7 - 2.1+.  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/master/.travis.yml/>`_ for details.
 
 Documentation is hosted on `Read The Docs <http://djangorestframework-queryfields.readthedocs.io/>`_.
