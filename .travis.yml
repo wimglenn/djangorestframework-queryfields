@@ -26,10 +26,10 @@ matrix:
     env: DJANGO_VERSION="2.1.0"
 
 install: 
+  - pip install --upgrade pytest setuptools
   - pip install -q Django~=$DJANGO_VERSION
-  - if [[ $DJANGO_VERSION == '1.7'* ]]; then pip install djangorestframework<3 pytest-django<3.2; fi
   - pip install --editable .[dev]
-  - pip install --upgrade pytest
+  - if [[ $DJANGO_VERSION == '1.7'* ]]; then pip install "djangorestframework<3" "pytest-django<3.2"; fi
 
 script: 
   - pip freeze
