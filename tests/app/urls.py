@@ -5,8 +5,8 @@ from tests.app.views import ExplosiveViewSet
 from tests.app.views import QuoteViewSet
 from tests.app.views import SnippetViewSet
 
-vs = [int(x) for x in __version__.split(".")]
-basename = 'basename' if __version__ >= (3, 9) else 'base_name'
+v = [int(x) for x in __version__.split(".")]
+basename = 'basename' if v >= (3, 9) else 'base_name'
 
 router = DefaultRouter()
 router.register(r'quotes', QuoteViewSet, **{basename: 'api-quote'})
