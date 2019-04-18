@@ -28,7 +28,7 @@ setup(
         'dev': [
             'pytest', 'pytest-cov', 'pytest-django', 'coveralls',
             'django', 'djangorestframework', 'mock_django',
-            'setuptools', 'wheel',
+            'setuptools', 'wheel', 'pytz',
         ]
     },
 )
