@@ -5,7 +5,7 @@ from tests.app.views import ExplosiveViewSet
 from tests.app.views import QuoteViewSet
 from tests.app.views import SnippetViewSet
 
-v = [int(x) for x in __version__.split(".")]
+v = tuple([int(x) for x in __version__.split(".")])
 basename = 'basename' if v >= (3, 9) else 'base_name'
 
 router = DefaultRouter()
