@@ -48,3 +48,25 @@ Allows clients to control which fields will be sent in the API response.  Fields
 **Supported Django versions**: 1.7 - 2.2+.  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/master/.travis.yml/>`_ for details.
 
 Documentation is hosted on `Read The Docs <http://djangorestframework-queryfields.readthedocs.io/>`_.
+
+Developers, developers, developers!
+-----------------------------------
+
+Want to contribute to the project? This is how to run the test suite:
+
+.. code-block:: bash
+
+   # get the codez
+   git clone https://github.com/wimglenn/djangorestframework-queryfields.git
+
+   # create and/or activate your virtualenv, this or something like it:
+   cd djangorestframework-queryfields
+   python3 -m venv .venv
+   source .venv/bin/activate
+
+   # installing the app in your venv
+   pip install --editable ".[dev]"
+   git checkout -b myfeature
+
+   # hack away, then ...
+   pytest
