@@ -4,7 +4,9 @@ sudo: false
 
 python:
   - "3.6"
-  - "3.7-dev"
+  - "3.7"
+  - "3.8"
+  - "3.9"
   - "pypy3"
 
 env:
@@ -13,6 +15,9 @@ env:
   - DJANGO_VERSION="2.0.13"
   - DJANGO_VERSION="2.1.8"
   - DJANGO_VERSION="2.2.0"
+  - DJANGO_VERSION="3.0.4"
+  - DJANGO_VERSION="3.1.12"
+  - DJANGO_VERSION="3.2.4"
 
 matrix:
   fast_finish: true
