@@ -28,7 +28,7 @@ jobs:
           python -m pip install ".[dev]"
 
       - name: "Run tests for ${{ matrix.python-version }}"
-        run: python -m pytest
+        run: python -m pytest --cov=drf-queryfields
 
       - name: "Combine coverage"
         run: |
