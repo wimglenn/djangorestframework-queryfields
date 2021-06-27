@@ -30,12 +30,6 @@ jobs:
       - name: "Run tests for ${{ matrix.python-version }}"
         run: python -m pytest --cov=drf_queryfields
 
-      - name: "Combine coverage"
-        run: |
-          set -xe
-          python -m coverage combine
-          python -m coverage xml
-
       - name: Upload coverage to Codecov
         uses: "codecov/codecov-action@v1"
         with:
