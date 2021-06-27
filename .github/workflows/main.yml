@@ -30,4 +30,4 @@ jobs:
           python -m pip install ".[dev]"
 
       - name: "Run tests for ${{ matrix.python-version }}"
-        run: pytest
+        run: python -m pytest
