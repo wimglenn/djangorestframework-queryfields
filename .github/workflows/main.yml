@@ -11,8 +11,6 @@ jobs:
   tests:
     name: "Python ${{ matrix.python-version }}"
     runs-on: "ubuntu-latest"
-    env:
-      USING_COVERAGE: "3.6,3.8"
 
     strategy:
       matrix:
@@ -31,3 +29,14 @@ jobs:
 
       - name: "Run tests for ${{ matrix.python-version }}"
         run: python -m pytest
+
+      - name: "Combine coverage"
+        run: |
+          set -xe
+          python -m coverage combine
+          python -m coverage xml
+
+      - name: Upload coverage to Codecov
+        uses: "codecov/codecov-action@v1"
+        with:
+          fail_ci_if_error: true
