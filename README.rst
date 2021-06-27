@@ -1,13 +1,13 @@
 Django REST framework QueryFields
 =================================
 
-|travis|_ |coveralls|_ |pypi|_ |womm|_
+|gh|_ |codecov|_ |pypi|_ |womm|_
 
-.. |travis| image:: https://travis-ci.org/wimglenn/djangorestframework-queryfields.svg?branch=master
-.. _travis: https://travis-ci.org/wimglenn/djangorestframework-queryfields
+.. |gh| image:: https://github.com/wimglenn/djangorestframework-queryfields/actions/workflows/main.yml/badge.svg
+.. _gh: https://github.com/wimglenn/djangorestframework-queryfields/actions
 
-.. |coveralls| image:: https://coveralls.io/repos/github/wimglenn/djangorestframework-queryfields/badge.svg?branch=master
-.. _coveralls: https://coveralls.io/github/wimglenn/djangorestframework-queryfields?branch=master
+.. |codecov| image:: https://codecov.io/gh/wimglenn/djangorestframework-queryfields/branch/main/graph/badge.svg?token=WeqbZ83YRg
+.. _codecov: https://codecov.io/gh/wimglenn/djangorestframework-queryfields
 
 .. |pypi| image:: https://img.shields.io/pypi/v/djangorestframework-queryfields.svg
 .. _pypi: https://pypi.org/project/djangorestframework-queryfields
@@ -45,7 +45,7 @@ Allows clients to control which fields will be sent in the API response.  Fields
       "spirit_animal": "raccoon"
     }
 
-**Supported Django versions**: 1.7 - 3.2+.  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/master/.travis.yml/>`_ for details.
+**Supported Django versions**: 1.7 - 3.2+.  Check the `CI matrix <https://github.com/wimglenn/djangorestframework-queryfields/blob/main/.github/workflows/main.yml/>`_ for details.
 
 Documentation is hosted on `Read The Docs <http://djangorestframework-queryfields.readthedocs.io/>`_.
 
