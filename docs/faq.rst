@@ -27,6 +27,16 @@ A:
 
 Now request like ``GET /things/?exclude=key2|key3`` instead of the default ``GET /things/?fields!=key2,key3``.
 
+*New in v1.1.0*: The Django settings module may also be used, for example:
+
+.. code-block:: python
+
+    # in settings.py
+    DRF_QUERYFIELDS_INCLUDE_ARG_NAME = 'gimme'
+    DRF_QUERYFIELDS_EXCLUDE_ARG_NAME = 'omit'
+    DRF_QUERYFIELDS_DELIMITER = '+'
+
+
 Q:
   This thing broke, you suck... / Hey, wouldn't it be cool if...
 A:

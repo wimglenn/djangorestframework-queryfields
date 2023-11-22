@@ -27,15 +27,15 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
-        run: |
-          set -xe
-          pip install ".[dev]"
+        run: pip install ".[dev]"
 
       - name: Run tests for ${{ matrix.python-version }}
         run: python -m pytest --cov=drf_queryfields
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@main
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   tests-27:
     name: Python 2.7 on ubuntu-20.04
@@ -45,12 +45,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: |
-          set -xe
-          pip install ".[dev]"
+        run: pip install ".[dev]"
 
       - name: Run tests for Python 2.7 on Ubuntu 20.04
         run: python -m pytest --cov=drf_queryfields
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@main
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

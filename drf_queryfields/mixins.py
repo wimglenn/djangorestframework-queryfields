@@ -1,3 +1,6 @@
+from django.conf import settings
+
+
 class QueryFieldsMixin(object):
 
     # If using Django filters in the API, these labels mustn't conflict with any model field names.
@@ -10,6 +13,21 @@ class QueryFieldsMixin(object):
 
     def __init__(self, *args, **kwargs):
         super(QueryFieldsMixin, self).__init__(*args, **kwargs)
+        self.include_arg_name = getattr(
+            settings,
+            'DRF_QUERYFIELDS_INCLUDE_ARG_NAME',
+            self.include_arg_name,
+        )
+        self.exclude_arg_name = getattr(
+            settings,
+            'DRF_QUERYFIELDS_EXCLUDE_ARG_NAME',
+            self.exclude_arg_name,
+        )
+        self.delimiter = getattr(
+            settings,
+            'DRF_QUERYFIELDS_DELIMITER',
+            self.delimiter,
+        )
 
         try:
             request = self.context['request']

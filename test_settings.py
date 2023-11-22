@@ -7,3 +7,5 @@ INSTALLED_APPS = (
 )
 
 ROOT_URLCONF = 'tests.app.urls'
+
+USE_TZ = True
