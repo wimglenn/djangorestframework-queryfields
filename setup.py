@@ -15,7 +15,7 @@ with open("README.rst") as f:
 
 setup(
     name='djangorestframework-queryfields',
-    version='1.0.0',
+    version='1.1.0',
     description='Serialize a partial subset of fields in the API',
     long_description=long_description,
     packages=['drf_queryfields'],
