@@ -1,7 +1,7 @@
 Django REST framework QueryFields
 =================================
 
-|gh|_ |codecov|_ |pypi|_ |womm|_
+|gh| |codecov| |pypi| |womm|
 
 .. |gh| image:: https://github.com/wimglenn/djangorestframework-queryfields/actions/workflows/main.yml/badge.svg
 .. _gh: https://github.com/wimglenn/djangorestframework-queryfields/actions
